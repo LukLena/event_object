@@ -1,42 +1,25 @@
-//const tabActive = document.getElementsByClassName('tab_active')
+
 const tab = document.getElementsByClassName('tab')
-const content = document.querySelectorAll('.tab__content')
+const content = document.getElementsByClassName('tab__content')
 
 const arrayTab= Array.from(tab) //массив всех вкладок
  const element = arrayTab.findIndex((item) => item.classList.contains('tab_active')) // индекс активной вкладки
 
-
-
-    tab.onclick = active;
-    function active(event){
-      for (let i=0; i < arrayTab.length; i++){
-          if (tab[i] == arrayTab[element]){
-              return
-//              arrayTab[i].classList.remove('tab_active')
-        console.log(1)
-          } 
-          else {
-              arrayTab[element].classList.remove('tab_active')
-              tab[i].classList.add('tab_active')
-           console.log(2)
-          return
-          }
-           
+ for (let i=0; i < arrayTab.length; i++){
+     arrayTab[i].onclick = active;
+     
+     function active(event){
+        const tabActive= arrayTab[i].parentElement.querySelector('.tab_active')
+        tabActive.classList.remove('tab_active')
+        arrayTab[i].classList.add('tab_active')
+        if (arrayTab[i]){
+            const activeContent = content[element].parentElement.querySelector('.tab__content_active')
+            activeContent.classList.remove('tab__content_active')
+            content[i].classList.add('tab__content_active')
+         }
       }
-          
-       
-     } 
-    tab.addEventListener('click', active)
-  
-  
 
+     arrayTab[i].addEventListener('click', active)
+ }
 
-
- 
-
-
-
-
-//
-//1 выбрать раздел нажать на раздел
-//2 Б появляется описание
+    
